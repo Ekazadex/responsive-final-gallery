@@ -17,29 +17,43 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f8f9fa;
-    color: #212529;
-    line-height: 1.6;
-    padding: 1.5rem 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+    background-color: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.5;
+    padding: 3rem 1.25rem 5rem;
+    -webkit-font-smoothing: antialiased;
 }
 
 header {
     text-align: center;
-    margin-bottom: 2rem;
+    max-width: 720px;
+    margin: 0 auto 3rem;
+}
+
+.sub-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #0071e3;
+    margin-bottom: 0.75rem;
 }
 
 header h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    color: #111827;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #1d1d1f;
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
 }
 
 header p {
     font-size: 1.05rem;
-    color: #4b5563;
-    max-width: 680px;
-    margin: 0 auto;
+    color: #86868b;
+    line-height: 1.6;
 }
 
 /* Mobile-First Grid: 1 column, 10px gap */
@@ -47,41 +61,52 @@ header p {
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
-    max-width: 1100px;
+    max-width: 1040px;
     margin: 0 auto;
 }
 
 figure {
     background-color: #ffffff;
-    border: 2px solid #e5e7eb;
+    border: 1px solid rgba(0, 0, 0, 0.08);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+figure:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
 figure img {
     width: 100%;
-    height: 260px;
+    height: 320px;
     object-fit: cover;
     display: block;
 }
 
 figcaption {
-    padding: 1rem;
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
 }
 
 figcaption p {
     font-size: 0.95rem;
-    color: #374151;
+    color: #515154;
+    line-height: 1.5;
 }
 
 footer {
     text-align: center;
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #e5e7eb;
+    margin-top: 4.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
     font-size: 0.85rem;
-    color: #6b7280;
+    color: #86868b;
 }
 
 /* ==========================================================================
@@ -138,16 +163,34 @@ footer {
    Query #4: Dark Color Scheme
    Requirements:
    - Figure background-color to dark color
-   - Figure font color to light/yellowish color (high contrast for WAVE)
+   - Figure font color to lighter/yellowish color (high contrast for WAVE)
    - Figure border-color to black (#000000)
    ========================================================================== */
 @media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000000;
+        color: #f5f5f7;
+    }
+
+    header h1 {
+        color: #f5f5f7;
+    }
+
     figure {
-        background-color: #1a1a1e;
+        background-color: #1c1c1e;
         border-color: #000000;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    figcaption {
+        background-color: #1c1c1e;
     }
 
     figcaption p {
-        color: #fef08a; /* High contrast amber yellow, passes WCAG AAA */
+        color: #fef08a; /* High-contrast soft amber yellow, passes WAVE contrast check */
+    }
+
+    footer {
+        border-top-color: rgba(255, 255, 255, 0.1);
     }
 }
